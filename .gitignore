@@ -1,0 +1,19 @@
+# --- data: NEVER commit (original contains licence plates; files are >100 MB) ---
+*.csv
+!out/*.csv
+*.npy
+*.npz
+*.parquet
+*.xlsx
+
+# --- Python / PyCharm ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+.idea/
+
+# --- local helpers, not part of the project ---
+main.py
+check.py
+_backup_paths/

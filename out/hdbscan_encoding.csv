@@ -1,0 +1,4 @@
+config,description,n_features,n_clusters,noise_pct,silhouette,davies_bouldin,calinski,day_split_pct,time_s
+A_linear,Линейно кодиране — както в основния анализ,6,7,24.56,0.0587,4.4821,47465,100,114
+B_cyclic,Циклично кодиране — час и ден като sin/cos,7,7,7.12,0.1263,2.7681,29498,100,135
+C_continuous,Само непрекъснати признаци — без дискретните,4,11,24.55,0.0754,3.6865,37330,0,24

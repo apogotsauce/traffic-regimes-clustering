@@ -1,0 +1,7 @@
+config,description,n_features,features,silhouette,davies_bouldin,calinski,ari_vs_full,ari_sd,ami_vs_full,verdict,time_s
+G0_full,Всички признаци — базов модел,6,speed_kmh + hour + day_of_week + vehicle_class + length_mm + is_weekend,0.2828,1.2984,35234,1.0,0.0,1.0,базов,20
+G1_no_vehicle,Без vehicle_class + length_mm (характеристика на возилото),4,speed_kmh + hour + day_of_week + is_weekend,0.3294,1.1287,46632,0.7715,0.0,0.7488,ЗНАЧИМ,23
+G2_no_week,Без day_of_week + is_weekend (седмичен режим),4,speed_kmh + hour + vehicle_class + length_mm,0.2986,1.0839,35056,0.571,0.0,0.6248,ЗНАЧИМ,20
+G3_no_continuous,Без speed_kmh + length_mm (непрекъснатите признаци),4,hour + day_of_week + vehicle_class + is_weekend,0.4216,0.8566,82188,0.985,0.0,0.9673,в рамките на шума,19
+G4_temporal_only,Само времеви признаци,3,hour + day_of_week + is_weekend,0.4305,0.8148,104646,0.5987,0.0135,0.6333,ЗНАЧИМ,19
+G5_nontemporal_only,Само нетемпорални признаци,3,speed_kmh + vehicle_class + length_mm,0.3443,0.9049,52554,0.0635,0.0001,0.174,ЗНАЧИМ,20

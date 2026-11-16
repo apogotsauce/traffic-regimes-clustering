@@ -1,0 +1,3 @@
+config,description,n_features,n_clusters,noise_pct,silhouette,davies_bouldin,calinski,split_day,split_hour,split_class,time_s
+D_speed_length,Само speed и length — единствените непрекъснати,2,2,15.68,0.3354,0.7624,50431,0,0,0,26
+E_jittered,Пълен набор с добавен шум към дискретните признаци,7,7,13.81,0.1297,2.6482,30720,100,0,0,140
