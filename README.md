@@ -11,16 +11,23 @@ reproducible the resulting partitions are.
 
 ## Data
 
-The raw data are **not included** in this repository.
+The anonymized vehicle records are in `data/`, one compressed file per year:
 
-- The original export contains licence-plate numbers, which are personal data.
-  `anonymize.py` removes the `plate` and `country` columns and writes
-  `traffic_anonymized.csv`; these columns are not used anywhere in the analysis.
-- Even after anonymisation the file is about 1 GB, above GitHub's file-size limit.
+| File | Records |
+|---|---|
+| `data/traffic_2022.csv.gz` | 3,234,878 |
+| `data/traffic_2023.csv.gz` | 6,004,518 |
+| `data/traffic_2024.csv.gz` | 2,032,419 |
 
-The data were provided by the Center of Competence "Smart Mechatronic, Eco- and Energy-Saving Systems and Technologies" (Gabrovo, Bulgaria) and are available from the authors on reasonable request.
+The original export contained licence-plate numbers. `anonymize.py` removed the
+`plate` and `country` columns; these columns are not used anywhere in the analysis.
+`split_data.py` produced the yearly files. The 4,915 records with an invalid vehicle
+class code are removed later by `s1_prepare.py`, giving the 11,266,900 records used in the article.
 
-Expected columns of `traffic_anonymized.csv`:
+The data were provided by the Center of Competence "Smart Mechatronic, Eco- and Energy-Saving
+Systems and Technologies" (Gabrovo, Bulgaria).
+
+Columns:
 `datetime, direction, speed_kmh, vehicle_class, lane, length_mm, hour, day_of_week, month, year, is_weekend, vehicle_type`
 
 ## How to run
@@ -31,12 +38,18 @@ Python 3.14. Install the packages:
 pip install -r requirements.txt
 ```
 
-Put `traffic_anonymized.csv` in the project folder and run the scripts in this order.
+First rebuild the single data file:
+
+```
+python merge_data.py
+```
+
+This creates `traffic_anonymized.csv` (about 1 GB). Then run the scripts in this order.
 All outputs go to `out/`.
 
 | Script | What it does |
 |---|---|
-| `anonymize.py` | Removes licence plates from the original export (only needed once) |
+| `merge_data.py` | Joins the yearly files from `data/` into `traffic_anonymized.csv` |
 | `s1_prepare.py` | Builds and standardizes the six features, saves `X_linear.npy`, `X_cyclic.npy`, `meta.npy` |
 | `s2_select_k.py` | Selects the number of clusters K (elbow, silhouette, Davies–Bouldin, Calinski–Harabasz) |
 | `s3_clustering.py` | Runs the clustering algorithms and computes the validity indices |
